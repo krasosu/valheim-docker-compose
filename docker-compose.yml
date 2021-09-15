@@ -2,6 +2,7 @@ version: "3"
 services:
   valheim:
     image: mbround18/valheim:1.4.3
+    container_name: valheim_server
     ports:
       - 2456:2456/udp
       - 2457:2457/udp
