@@ -33,7 +33,7 @@ jobs:
           ssh_public_key: ${{ secrets.PUBLIC_KEY }}
           deployment_mode: docker-compose
           copy_stack_file: true
-          deploy_path: /opt/valheim
+          deploy_path: /home/joda/
           stack_file_name: docker-compose.yml
           pull_images_first: true
           keep_files: 3
