@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,7 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Start Deployment
+      - name: Create .env File
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          envkey_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          directory: /opt/valheim
+          file_name: .env
+        
+      - name: Start docker-compose Deployment
         uses: wshihadeh/docker-deployment-action@master
         with:
           remote_docker_host: ${{ secrets.HOST }}
