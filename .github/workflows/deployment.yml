@@ -25,14 +25,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Create .env File
+      - name: Create .env
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
           envkey_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          directory: /opt/valheim
+          directory: ./
           file_name: .env
-        
+          
+      - name: Deploy .env
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SCP_HOST }}
+          username: ${{ secrets.SCP_USERNAME }}
+          password: ${{ secrets.SCP_PASSWORD }}
+          port: ${{ secrets.SCP_PORT }}
+          source: ".env"
+          target: "/opt/valheim/"
+      
       - name: Start docker-compose Deployment
         uses: wshihadeh/docker-deployment-action@master
         with:
