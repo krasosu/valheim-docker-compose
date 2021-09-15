@@ -25,14 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Step 1 - Echo out a GitHub Actions Secret to the logs
-        run: |
-          echo "The GitHub Action Secret "
-          echo ${{secrets.PUBLIC_KEY}} | sed 's/./& /g' 
-          echo ${{secrets.HOST}} | sed 's/./& /g' 
-          echo ${{secrets.PRIVATE_KEY}} | sed 's/./& /g' 
-          echo ${{secrets.SERVER_PASSWORD}} | sed 's/./& /g' 
-
       - name: Start Deployment
         uses: wshihadeh/docker-deployment-action@master
         with:
