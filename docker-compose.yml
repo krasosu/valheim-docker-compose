@@ -1,12 +1,15 @@
 version: "3"
+
 services:
   valheim:
     image: mbround18/valheim:latest
     container_name: valheim_server
+    restart: always
     ports:
       - 2456:2456/udp
       - 2457:2457/udp
       - 2458:2458/udp
+      - 8074:8074
     environment:
       - PORT=2456
       - NAME="Valheim - Krasosu"
@@ -24,7 +27,15 @@ services:
       - AUTO_BACKUP_ON_SHUTDOWN=1
       - WEBHOOK_URL=${WEBHOOK_URL}
       - UPDATE_ON_STARTUP=1
+      - ADDRESS=94.16.109.118
+      - HTTP_PORT=8074
     volumes:
       - ./saves:/home/steam/.config/unity3d/IronGate/Valheim
       - ./server:/home/steam/valheim
       - ./backups:/home/steam/backups
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
