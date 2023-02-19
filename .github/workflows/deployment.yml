@@ -38,11 +38,11 @@ jobs:
         with:
           host: ${{ secrets.SCP_HOST }}
           username: ${{ secrets.SCP_USERNAME }}
-          password: ${{ secrets.SCP_PASSWORD }}
+          # password: ${{ secrets.SCP_PASSWORD }}
+          key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.SCP_PORT }}
           source: ".env"
           target: "/opt/valheim/"
-          tar_tmp_path: "/tmp/"
       
       - name: Start docker-compose Deployment
         uses: wshihadeh/docker-deployment-action@master
