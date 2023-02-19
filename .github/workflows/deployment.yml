@@ -42,6 +42,7 @@ jobs:
           port: ${{ secrets.SCP_PORT }}
           source: ".env"
           target: "/opt/valheim/"
+          debug: true
       
       - name: Start docker-compose Deployment
         uses: wshihadeh/docker-deployment-action@master
