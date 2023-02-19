@@ -33,15 +33,15 @@ jobs:
           directory: ./
           file_name: .env
           
-#      - name: Deploy .env
-#        uses: appleboy/scp-action@v0.1.3
-#        with:
-#          host: ${{ secrets.SCP_HOST }}
-#          username: ${{ secrets.SCP_USERNAME }}
-#          password: ${{ secrets.SCP_PASSWORD }}
-#          port: ${{ secrets.SCP_PORT }}
-#          source: ".env"
-#          target: "/opt/valheim/"
+      - name: Deploy .env
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.SCP_HOST }}
+          username: ${{ secrets.SCP_USERNAME }}
+          password: ${{ secrets.SCP_PASSWORD }}
+          port: ${{ secrets.SCP_PORT }}
+          source: ".env"
+          target: "/opt/valheim/"
       
       - name: Start docker-compose Deployment
         uses: wshihadeh/docker-deployment-action@master
