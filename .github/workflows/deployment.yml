@@ -53,7 +53,7 @@ jobs:
           copy_stack_file: true
           deploy_path: /opt/valheim
           stack_file_name: docker-compose.yml
-          pre_deployment_command_args: down --remove-orphans
+          pre_deployment_command_args: -p test down --remove-orphans
           pull_images_first: true
           keep_files: 3
           args: -p test up -d 
